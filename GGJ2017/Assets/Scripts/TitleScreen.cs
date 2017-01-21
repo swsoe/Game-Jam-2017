@@ -35,6 +35,8 @@ public class TitleScreen : MonoBehaviour {
 
     public void StartLevel()
     {
+		PlayerPrefs.SetInt("win", 0);
+		PlayerPrefs.Save ();
         UnityEngine.SceneManagement.SceneManager.LoadScene(selectedLevel.ToString());
     }
 

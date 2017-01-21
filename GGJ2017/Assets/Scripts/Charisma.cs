@@ -1,7 +1,23 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Events;
 using System.Collections;
 
+
+[System.Serializable]
+public class WinEvent : UnityEvent{}
+
+[System.Serializable]
+public class MatchEvent : UnityEvent{}
+
+[System.Serializable]
+public class LoseEvent : UnityEvent{}
+
 public class Charisma : MonoBehaviour {
+
+	public WinEvent winEvent;
+	public MatchEvent matchEvent;
+	public LoseEvent loseEvent;
 
     //Starting charisma
     public int charisma = 500;
@@ -23,16 +39,17 @@ public class Charisma : MonoBehaviour {
 
     public float Percentage;
 
-    //The bar object
-    private UnityEngine.UI.Slider scrollBar;
+	//
+	public Image fill;
 
 	// Use this for initialization
 	void Start ()
     {
-        scrollBar = gameObject.GetComponent<UnityEngine.UI.Slider>();
-        scrollBar.minValue = 0;
-        scrollBar.maxValue = charismaMax;
-        scrollBar.value = charisma;
+		charisma = charismaMax / 4;
+
+		if(PlayerPrefs.GetInt("win") == 1){
+			charisma = charismaMax / 2;
+		}
     }
 	
 	// Update is called once per frame
@@ -46,6 +63,7 @@ public class Charisma : MonoBehaviour {
                 charisma = charisma - charismaDrain;
                 if (charisma < 0)
                 {
+					loseEvent.Invoke ();
                     charisma = 0;
                     drain = false;
                 }
@@ -53,10 +71,26 @@ public class Charisma : MonoBehaviour {
             }
             Percentage = (float)charisma / (float)charismaMax;
 
-            scrollBar.value = charisma;
+			fill.fillAmount = Percentage;
+
+			if(Percentage > .95F){
+				PlayerPrefs.SetInt("win", 1);
+				PlayerPrefs.Save ();
+				winEvent.Invoke ();
+			}
 
         }
         
+	}
+
+	public void TimeUpResults(){
+		PlayerPrefs.SetInt("win", 0);
+		PlayerPrefs.Save ();
+		if (Percentage > .2f) {
+			matchEvent.Invoke ();
+		} else {
+			loseEvent.Invoke ();
+		}
 	}
 
     public void startBar()
