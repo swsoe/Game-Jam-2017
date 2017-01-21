@@ -33,7 +33,6 @@ public class Charisma : MonoBehaviour {
         scrollBar.minValue = 0;
         scrollBar.maxValue = charismaMax;
         scrollBar.value = charisma;
-        print(gameObject.name);
     }
 	
 	// Update is called once per frame
