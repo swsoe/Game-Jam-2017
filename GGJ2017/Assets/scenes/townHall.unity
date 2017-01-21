@@ -902,8 +902,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b518876e3766247158494beb5d0bec32, type: 2}
   m_IsPrefabParent: 0
-<<<<<<< HEAD
-=======
 --- !u!1 &715850758
 GameObject:
   m_ObjectHideFlags: 0
@@ -1127,7 +1125,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e2bea7d0b59436b43a47d6262b3160fe, type: 2}
   m_IsPrefabParent: 0
->>>>>>> origin/master
 --- !u!1001 &952474463
 Prefab:
   m_ObjectHideFlags: 0
