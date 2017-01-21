@@ -151,6 +151,17 @@ Animator:
   m_PrefabParentObject: {fileID: 95064825988392150, guid: 3258befb9db506844b3eddb1cb32fb34,
     type: 2}
   m_PrefabInternal: {fileID: 1178304034}
+--- !u!114 &218691049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 218691047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e46564d8424d47c4a8753589c3715b05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &218691052
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -895,7 +906,7 @@ Prefab:
     - target: {fileID: 114136754960181036, guid: e2bea7d0b59436b43a47d6262b3160fe,
         type: 2}
       propertyPath: charisma
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114136754960181036, guid: e2bea7d0b59436b43a47d6262b3160fe,
         type: 2}

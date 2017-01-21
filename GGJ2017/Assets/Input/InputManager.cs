@@ -374,6 +374,7 @@ public class InputManager : MonoBehaviour {
 
 	//send the total score after the wave completes
 	public void SendScore(){
+		Debug.Log ("ADDING " + scoreSum + " POINTS");
 		adjustScoreEvent.Invoke (scoreSum);
 		scoreSum = 0;
 	}
