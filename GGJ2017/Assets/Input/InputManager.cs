@@ -32,8 +32,9 @@ public class InputManager : MonoBehaviour {
 	public Text textInput;
 	string word = "";
 
-	string[] letters =  {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"," ","-","'"};
+	string[] letters =  {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","-","'"};
 
+	bool toggleCarrot = true;
 
 
 
@@ -58,6 +59,8 @@ public class InputManager : MonoBehaviour {
 			badCSV = ParseCSV (baseFilePath + "/" + pathBadCSV [i]);
 		}
 
+		InvokeRepeating("FlashCarrot", 1f, .5f);
+
 
 	}
 	
@@ -66,15 +69,29 @@ public class InputManager : MonoBehaviour {
 
 		//Check for valid text input
 		for(int i = 0; i < letters.Length; i++){
+			//Debug.Log("CHECKING " + letters[i]);
 			if(Input.GetKeyDown(letters[i])){
-				word += letters [i];
+				UpdateWord (letters [i]);
 			}
+		}
+			
+		if(Input.GetKeyDown(KeyCode.Space)){
+			UpdateWord(" ");
 		}
 
 		//Backspace
 		if(Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown(KeyCode.Backspace)){
 			if(word.Length > 0){
+				bool hasCarrot = false;
+				if(word[word.Length - 1] == '|'){
+					word = word.Substring (0, word.Length - 1);
+					hasCarrot = true;
+				}
 				word = word.Substring (0, word.Length - 1);
+
+				if(hasCarrot){word += "|";}
+
+				textInput.text = word;
 			}
 		}
 
@@ -82,6 +99,7 @@ public class InputManager : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.Return)){
 			CheckWord (word);
 			word = "";
+			textInput.text = word;
 		}
 		
 
@@ -92,6 +110,41 @@ public class InputManager : MonoBehaviour {
 //		if(Input.GetKeyDown(KeyCode.Return)){
 //			CheckCharacter (0);
 //		}
+	}
+
+	void UpdateWord(string newLetter){
+		if(word.Length < 40){
+			
+			bool hasCarrot = false;
+
+			if(word.Length > 0){
+				if(word[word.Length - 1] == '|'){
+					word = word.Substring (0, word.Length - 1);
+					hasCarrot = true;
+				}
+			}
+
+			word += newLetter;
+
+			if(hasCarrot){word += "|";}
+
+			textInput.text = word;
+		}
+
+	}
+
+	void FlashCarrot(){
+		if(toggleCarrot){
+			word += "|";
+			textInput.text = word;
+		}
+		else{
+			if(word.Length > 0){
+				word = word.Substring (0, word.Length - 1);
+				textInput.text = word;
+			}
+		}
+		toggleCarrot = !toggleCarrot;
 	}
 
 	//Parses the CSV Library for a character
@@ -110,6 +163,10 @@ public class InputManager : MonoBehaviour {
 
 	//see if word exists
 	public void CheckWord(string enteredWord){
+
+		if(enteredWord[enteredWord.Length - 1] == '|'){
+			enteredWord = enteredWord.Substring (0, enteredWord.Length - 1);
+		}
 
 		enteredWord = "\"" + enteredWord + "\"";
 
@@ -132,17 +189,18 @@ public class InputManager : MonoBehaviour {
 	}
 
 	//Character Checks to see how to react
-	public void CheckCharacter(int characterIndex){
+	public int CheckCharacter(int characterIndex){
 		if(characterLikes[characterIndex]){
 			scoreSum++;
-			//adjustScoreEvent.Invoke (1);
 			Debug.Log ("LIKES");
+			return 1;
 		}
 		if(characterHates[characterIndex]){
 			scoreSum--;
-
 			Debug.Log ("HATES");
+			return -1;
 		}
+		return 0;
 
 	}
 

@@ -270,7 +270,7 @@ MonoBehaviour:
   - redneck_good.csv
   pathBadCSV:
   - redneck_bad.csv
-  textInput: {fileID: 0}
+  textInput: {fileID: 263261835}
 --- !u!114 &263261835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,7 +303,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: New Text|
 --- !u!222 &263261836
 CanvasRenderer:
   m_ObjectHideFlags: 0
