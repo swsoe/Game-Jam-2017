@@ -6,9 +6,12 @@ public class Crowd : MonoBehaviour {
 
 	public int characterType;
 
+    public List<UnityEngine.Material> textures;
+
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+    {
+        gameObject.GetComponent<UnityEngine.MeshRenderer>().material = null;
 	}
 	
 	// Update is called once per frame
