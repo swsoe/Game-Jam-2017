@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 136829797174232416}
   - component: {fileID: 23917395156124362}
   m_Layer: 0
-  m_Name: canidate
+  m_Name: Canidate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

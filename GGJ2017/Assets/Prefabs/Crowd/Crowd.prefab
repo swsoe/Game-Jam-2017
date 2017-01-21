@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 136880150504970184}
   - component: {fileID: 23549477943439556}
   m_Layer: 0
-  m_Name: pleebs
+  m_Name: Crowd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

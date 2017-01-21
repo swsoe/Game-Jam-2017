@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 using System.Collections;
 using System.IO;
 
@@ -22,6 +23,20 @@ public class InputManager : MonoBehaviour {
 
 	bool[] characterLikes;
 	bool[] characterHates;
+
+	int scoreSum = 0;
+
+
+	[Header("Text Input")]
+
+	public Text textInput;
+	string word = "";
+
+	string[] letters =  {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"," ","-","'"};
+
+
+
+
 
 	void Awake(){
 		Instance = this;
@@ -48,12 +63,35 @@ public class InputManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetKeyDown("space")){
-			CheckWord ("dumb");
+
+		//Check for valid text input
+		for(int i = 0; i < letters.Length; i++){
+			if(Input.GetKeyDown(letters[i])){
+				word += letters [i];
+			}
 		}
+
+		//Backspace
+		if(Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown(KeyCode.Backspace)){
+			if(word.Length > 0){
+				word = word.Substring (0, word.Length - 1);
+			}
+		}
+
+		//Submit Word
 		if(Input.GetKeyDown(KeyCode.Return)){
-			CheckCharacter (0);
+			CheckWord (word);
+			word = "";
 		}
+		
+
+
+//		if(Input.GetKeyDown("space")){
+//			CheckWord ("dumb");
+//		}
+//		if(Input.GetKeyDown(KeyCode.Return)){
+//			CheckCharacter (0);
+//		}
 	}
 
 	//Parses the CSV Library for a character
@@ -70,6 +108,7 @@ public class InputManager : MonoBehaviour {
 		return fileData;
 	}
 
+	//see if word exists
 	public void CheckWord(string enteredWord){
 
 		enteredWord = "\"" + enteredWord + "\"";
@@ -95,14 +134,22 @@ public class InputManager : MonoBehaviour {
 	//Character Checks to see how to react
 	public void CheckCharacter(int characterIndex){
 		if(characterLikes[characterIndex]){
-			adjustScoreEvent.Invoke (1);
+			scoreSum++;
+			//adjustScoreEvent.Invoke (1);
 			Debug.Log ("LIKES");
 		}
 		if(characterHates[characterIndex]){
-			adjustScoreEvent.Invoke (-1);
+			scoreSum--;
+
 			Debug.Log ("HATES");
 		}
 
+	}
+
+	//send the total score after the wave completes
+	public void SendScore(){
+		adjustScoreEvent.Invoke (scoreSum);
+		scoreSum = 0;
 	}
 		
 }
