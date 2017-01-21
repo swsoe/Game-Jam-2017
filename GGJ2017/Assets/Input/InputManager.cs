@@ -2,6 +2,7 @@
 using UnityEngine.Events;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 
 [System.Serializable]
@@ -18,6 +19,8 @@ public class InputManager : MonoBehaviour {
 	public string[] pathGoodCSV;
 	public string[] pathBadCSV;
 
+	List<string> usedWords = new List<string> ();
+
 	string[] goodCSV;
 	string[] badCSV;
 
@@ -30,13 +33,20 @@ public class InputManager : MonoBehaviour {
 	[Header("Text Input")]
 
 	public Text textInput;
+	public Text holdText;
+
+	CanvasGroup inputCanvas;
+	CanvasGroup holdCanvas;
+
+	Animator textAnim;
+
 	string word = "";
 
 	string[] letters =  {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","-","'"};
 
 	bool toggleCarrot = true;
 
-
+	bool deleteHeld = false;
 
 
 	void Awake(){
@@ -48,7 +58,10 @@ public class InputManager : MonoBehaviour {
 	void Start () {
 		characterLikes = new bool[characterPrefabs.Length];
 		characterHates = new bool[characterPrefabs.Length];
+		textAnim = transform.parent.GetComponent<Animator> ();
 
+		inputCanvas = textInput.transform.GetComponent<CanvasGroup> ();
+		holdCanvas = holdText.transform.GetComponent<CanvasGroup> ();
 
 		string baseFilePath = Application.streamingAssetsPath;
 
@@ -80,19 +93,18 @@ public class InputManager : MonoBehaviour {
 		}
 
 		//Backspace
+		if(Input.GetKeyUp(KeyCode.Delete) || Input.GetKeyUp(KeyCode.Backspace)){
+			deleteHeld = false;
+			StopCoroutine ("DeleteDelay");
+		}
+
+		if(deleteHeld){
+			Backspace ();
+		}
+
 		if(Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown(KeyCode.Backspace)){
-			if(word.Length > 0){
-				bool hasCarrot = false;
-				if(word[word.Length - 1] == '|'){
-					word = word.Substring (0, word.Length - 1);
-					hasCarrot = true;
-				}
-				word = word.Substring (0, word.Length - 1);
-
-				if(hasCarrot){word += "|";}
-
-				textInput.text = word;
-			}
+			Backspace ();
+			StartCoroutine ("DeleteDelay");
 		}
 
 		//Submit Word
@@ -101,15 +113,33 @@ public class InputManager : MonoBehaviour {
 			word = "";
 			textInput.text = word;
 		}
-		
 
+	}
 
-//		if(Input.GetKeyDown("space")){
-//			CheckWord ("dumb");
-//		}
-//		if(Input.GetKeyDown(KeyCode.Return)){
-//			CheckCharacter (0);
-//		}
+	IEnumerator DeleteDelay(){
+		Debug.Log ("DELAY");
+		yield return new WaitForSeconds (.2f);
+		Debug.Log ("DONE DELAY");
+		deleteHeld = true;
+	}
+
+	void Backspace(){
+		//deleteHeld = true;
+
+		if(word.Length > 0){
+			bool hasCarrot = false;
+			if(word[word.Length - 1] == '|'){
+				word = word.Substring (0, word.Length - 1);
+				hasCarrot = true;
+			}
+			if(word.Length > 0){
+				word = word.Substring (0, word.Length - 1);
+			}
+
+			if(hasCarrot){word += "|";}
+
+			textInput.text = word;
+		}
 	}
 
 	void UpdateWord(string newLetter){
@@ -151,9 +181,6 @@ public class InputManager : MonoBehaviour {
 	string[] ParseCSV(string filePath){
 
 		string[] fileData = File.ReadAllLines (filePath);
-		//string[] lines = fileData.Split("\n"[0]);
-		//var lineData : String[] = (lines[0].Trim()).Split(","[0]);
-
 		foreach (string s in fileData) {
 			Debug.Log (s);
 		}
@@ -161,8 +188,27 @@ public class InputManager : MonoBehaviour {
 		return fileData;
 	}
 
+	IEnumerator HoldText(){
+		yield return new WaitForSeconds (.2f);
+		holdCanvas.alpha = 0f;
+		inputCanvas.alpha = 1f;
+	}
+
 	//see if word exists
 	public void CheckWord(string enteredWord){
+
+		enteredWord = enteredWord.ToLower ();
+		enteredWord = enteredWord.Replace("'", string.Empty);
+		enteredWord = enteredWord.Replace("-", string.Empty);
+
+
+		holdText.text = textInput.text;
+		holdCanvas.alpha = 1f;
+		inputCanvas.alpha = 0f;
+		StartCoroutine ("HoldText");
+
+
+		int likesSum = 0;
 
 		if(enteredWord[enteredWord.Length - 1] == '|'){
 			enteredWord = enteredWord.Substring (0, enteredWord.Length - 1);
@@ -170,22 +216,50 @@ public class InputManager : MonoBehaviour {
 
 		enteredWord = "\"" + enteredWord + "\"";
 
-		Debug.Log ("Checking " + enteredWord);
+		if(!usedWords.Contains(enteredWord)){
 
-		for (int i = 0; i < characterPrefabs.Length; i++) {
-
-			characterLikes [i] = (System.Array.IndexOf (goodCSV, enteredWord) != -1);
-			//characterLikes[i] = goodCSV.Contains (enteredWord);
-			if (characterLikes[i]) {
-				Debug.Log ("Character " + characterPrefabs [i].name + " Likes " + enteredWord);
+			for (int p = 0; p < characterPrefabs.Length; p++) {
+				characterLikes [p] = false;
+				characterHates [p] = false;
 			}
 
-			characterHates [i] = (System.Array.IndexOf (badCSV, enteredWord) != -1);
-			//characterHates[i] = badCSV.Contains (enteredWord);
-			if (characterHates[i]) {
-				Debug.Log ("Character " + characterPrefabs[i].name + " Hates " + enteredWord);
+
+			Debug.Log ("Checking " + enteredWord);
+
+			for (int i = 0; i < characterPrefabs.Length; i++) {
+
+				characterLikes [i] = (System.Array.IndexOf (goodCSV, enteredWord) != -1);
+				//
+				if (characterLikes[i]) {
+					likesSum++;
+					Debug.Log ("Character " + characterPrefabs [i].name + " Likes " + enteredWord);
+				}
+
+				characterHates [i] = (System.Array.IndexOf (badCSV, enteredWord) != -1);
+				//
+				if (characterHates[i]) {
+					likesSum--;
+					Debug.Log ("Character " + characterPrefabs[i].name + " Hates " + enteredWord);
+				}
 			}
+
+			usedWords.Add (enteredWord);
 		}
+
+		if(likesSum > 0){
+			textAnim.SetTrigger ("Correct");
+		}
+		if(likesSum < 0){
+			textAnim.SetTrigger ("Wrong");
+		}
+		if(likesSum == 0){
+			textAnim.SetTrigger ("Enter");
+		}
+
+
+
+
+
 	}
 
 	//Character Checks to see how to react
