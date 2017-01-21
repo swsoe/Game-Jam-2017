@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44658017, g: 0.49641502, b: 0.57482153, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -781,6 +781,119 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b518876e3766247158494beb5d0bec32, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &715850758
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 715850759}
+  - component: {fileID: 715850761}
+  - component: {fileID: 715850760}
+  - component: {fileID: 715850762}
+  m_Layer: 5
+  m_Name: LevelStartCountdown
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &715850759
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 715850758}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2073914294}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1174, y: 373}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &715850760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 715850758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 300
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 300
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 3
+--- !u!222 &715850761
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 715850758}
+--- !u!114 &715850762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 715850758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a533682ee4f88947b4a9d767bd659ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelStartCountdown:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 995280366}
+        m_MethodName: startBar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1952180665}
+        m_MethodName: StartTimer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: LevelStartTrigger, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1001 &750071001
 Prefab:
   m_ObjectHideFlags: 0
@@ -878,21 +991,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 224488006743063942, guid: e2bea7d0b59436b43a47d6262b3160fe,
-        type: 2}
-      propertyPath: m_LocalScale.x
-      value: 3.5887852
-      objectReference: {fileID: 0}
-    - target: {fileID: 224488006743063942, guid: e2bea7d0b59436b43a47d6262b3160fe,
-        type: 2}
-      propertyPath: m_LocalScale.y
-      value: 3.5887852
-      objectReference: {fileID: 0}
-    - target: {fileID: 224488006743063942, guid: e2bea7d0b59436b43a47d6262b3160fe,
-        type: 2}
-      propertyPath: m_LocalScale.z
-      value: 3.5887852
-      objectReference: {fileID: 0}
     - target: {fileID: 224942282535773812, guid: e2bea7d0b59436b43a47d6262b3160fe,
         type: 2}
       propertyPath: m_AnchorMax.y
@@ -901,26 +999,6 @@ Prefab:
     - target: {fileID: 224527805119163072, guid: e2bea7d0b59436b43a47d6262b3160fe,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114136754960181036, guid: e2bea7d0b59436b43a47d6262b3160fe,
-        type: 2}
-      propertyPath: charisma
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114136754960181036, guid: e2bea7d0b59436b43a47d6262b3160fe,
-        type: 2}
-      propertyPath: charismaMax
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114136754960181036, guid: e2bea7d0b59436b43a47d6262b3160fe,
-        type: 2}
-      propertyPath: drain
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114136754960181036, guid: e2bea7d0b59436b43a47d6262b3160fe,
-        type: 2}
-      propertyPath: tickLength
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2353,6 +2431,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 73.135, y: 180.00002, z: 0}
+--- !u!114 &1952180665 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114132048382700312, guid: fb827bcf610c45e41a53e1ebc6100667,
+    type: 2}
+  m_PrefabInternal: {fileID: 1300283079}
+  m_Script: {fileID: 11500000, guid: 741b120fb1f6def44b4baef5b30a81f2, type: 3}
 --- !u!4 &1964018166 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4856687350896332, guid: 12ca8c0a983144acc95383b7b120a61e,
@@ -2500,6 +2584,7 @@ RectTransform:
   - {fileID: 2095551384}
   - {fileID: 1684189084}
   - {fileID: 995280365}
+  - {fileID: 715850759}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
