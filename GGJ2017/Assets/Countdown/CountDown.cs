@@ -11,7 +11,7 @@ public class CountDown : MonoBehaviour {
 
 	public float timeLength = 60f;
 
-	public bool isCountDown = true;
+	public bool isCountDown = false;
 
 	public TimeUpEvent timeUpEvent;
 
@@ -42,4 +42,9 @@ public class CountDown : MonoBehaviour {
 
 
 	}
+
+    public void StartTimer()
+    {
+        isCountDown = true;
+    }
 }
