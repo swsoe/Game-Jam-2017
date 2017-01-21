@@ -8,8 +8,6 @@ public class Crowd : MonoBehaviour {
 
     public List<UnityEngine.Material> textures;
 
-    public InputManager input = InputManager.Instance;
-
     public Animator animator;
 
 	// Use this for initialization
@@ -26,23 +24,26 @@ public class Crowd : MonoBehaviour {
 		
 	}
 
-    void OnCollisionEnter(Collision collisionInfo)
+	void OnTriggerEnter(Collider other)
     {
         Collided();
     }
 
     void Collided()
     {
-        int result = 0;
-        //result = input.CheckCharacter(characterType);
+        //int result = 0;
+		int result = InputManager.Instance.CheckCharacter(characterType);
+		Debug.Log (result + " " + characterType);
         if (result > 0)
         {
             //trigger positive reaction
+			animator.SetTrigger("Like");
         }
         if (result < 0)
         {
             //trigger negative reaction
+			animator.SetTrigger("Hate");
         }
-        animator.SetTrigger("Collider");
+        
     }
 }

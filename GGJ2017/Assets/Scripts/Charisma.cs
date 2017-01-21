@@ -10,7 +10,7 @@ public class Charisma : MonoBehaviour {
     public int charismaMax = 1000;
 
     //Charisma drain amount
-    public const int charismaDrain = 5;
+    public int charismaDrain = 1;
 
     //Charisma drain tick length in seconds
     public float tickLength = 0.2F;

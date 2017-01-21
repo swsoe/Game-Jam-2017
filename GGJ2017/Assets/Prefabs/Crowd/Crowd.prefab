@@ -144,7 +144,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: e480b07593c3f474299cf46b5c1717f9, type: 2}
   - {fileID: 2100000, guid: 5f9c39c8d3fd2cb49baa963f8a6b2517, type: 2}
   - {fileID: 2100000, guid: e3c55dd0295258a44b0f200eef516d0e, type: 2}
-  input: {fileID: 0}
   animator: {fileID: 0}
 --- !u!136 &136534433733494218
 CapsuleCollider:
@@ -153,7 +152,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1803826767887372}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2

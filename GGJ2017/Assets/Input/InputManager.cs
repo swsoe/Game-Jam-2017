@@ -8,14 +8,18 @@ using System.IO;
 [System.Serializable]
 public class AdjustScoreEvent : UnityEvent<int>{}
 
+[System.Serializable]
+public class WaveEvent : UnityEvent{}
+
 public class InputManager : MonoBehaviour {
 
 	public static InputManager Instance;
 
 	public AdjustScoreEvent adjustScoreEvent;
+	public WaveEvent waveEvent;
 
 	[Header("Character Data")]
-	public Transform[] characterPrefabs;
+	//public Transform[] characterPrefabs;
 	public string[] pathGoodCSV;
 	public string[] pathBadCSV;
 
@@ -56,8 +60,8 @@ public class InputManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		characterLikes = new bool[characterPrefabs.Length];
-		characterHates = new bool[characterPrefabs.Length];
+		characterLikes = new bool[pathGoodCSV.Length];
+		characterHates = new bool[pathGoodCSV.Length];
 		textAnim = transform.parent.GetComponent<Animator> ();
 
 		inputCanvas = textInput.transform.GetComponent<CanvasGroup> ();
@@ -65,7 +69,7 @@ public class InputManager : MonoBehaviour {
 
 		string baseFilePath = Application.streamingAssetsPath;
 
-		for (int i = 0; i < characterPrefabs.Length; i++) {
+		for (int i = 0; i < pathGoodCSV.Length; i++) {
 			Debug.Log ("Parsing " + baseFilePath + "/" + pathGoodCSV [i]);
 			goodCSV = ParseCSV (baseFilePath + "/" + pathGoodCSV [i]);
 			Debug.Log ("Parsing " + baseFilePath + "/" + pathBadCSV [i]);
@@ -182,7 +186,7 @@ public class InputManager : MonoBehaviour {
 
 		string[] fileData = File.ReadAllLines (filePath);
 		foreach (string s in fileData) {
-			Debug.Log (s);
+			//Debug.Log (s);
 		}
 
 		return fileData;
@@ -218,7 +222,7 @@ public class InputManager : MonoBehaviour {
 
 		if(!usedWords.Contains(enteredWord)){
 
-			for (int p = 0; p < characterPrefabs.Length; p++) {
+			for (int p = 0; p < pathGoodCSV.Length; p++) {
 				characterLikes [p] = false;
 				characterHates [p] = false;
 			}
@@ -226,20 +230,20 @@ public class InputManager : MonoBehaviour {
 
 			Debug.Log ("Checking " + enteredWord);
 
-			for (int i = 0; i < characterPrefabs.Length; i++) {
+			for (int i = 0; i < pathGoodCSV.Length; i++) {
 
 				characterLikes [i] = (System.Array.IndexOf (goodCSV, enteredWord) != -1);
 				//
 				if (characterLikes[i]) {
 					likesSum++;
-					Debug.Log ("Character " + characterPrefabs [i].name + " Likes " + enteredWord);
+					Debug.Log ("Character " + i + " Likes " + enteredWord);
 				}
 
 				characterHates [i] = (System.Array.IndexOf (badCSV, enteredWord) != -1);
 				//
 				if (characterHates[i]) {
 					likesSum--;
-					Debug.Log ("Character " + characterPrefabs[i].name + " Hates " + enteredWord);
+					Debug.Log ("Character " + i + " Hates " + enteredWord);
 				}
 			}
 
@@ -256,7 +260,7 @@ public class InputManager : MonoBehaviour {
 			textAnim.SetTrigger ("Enter");
 		}
 
-
+		waveEvent.Invoke ();
 
 
 
