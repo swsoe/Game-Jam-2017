@@ -4,4 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Start Screen.unity
+  - enabled: 1
+    path: Assets/Game Over Screen.unity
+  - enabled: 1
+    path: Assets/scenes/townHall.unity
+  - enabled: 1
+    path: Assets/scenes/stadium.unity
+  - enabled: 1
+    path: Assets/scenes/convention.unity

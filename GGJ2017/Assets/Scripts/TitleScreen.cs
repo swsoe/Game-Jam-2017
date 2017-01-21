@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TitleScreen : MonoBehaviour {
 
-    private Level selectedLevel = Level.FirstAppearence;
+    private Level selectedLevel = Level.townHall;
     public UnityEngine.UI.Text textBox;
 
     // Use this for initialization
@@ -38,6 +38,6 @@ public class TitleScreen : MonoBehaviour {
         UnityEngine.SceneManagement.SceneManager.LoadScene(selectedLevel.ToString());
     }
 
-    private enum Level {FirstAppearence, TownHall, TheBigSpeech}
+    private enum Level {townHall, convention, stadium}
 
 }
