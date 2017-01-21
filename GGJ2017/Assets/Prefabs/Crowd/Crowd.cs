@@ -10,11 +10,15 @@ public class Crowd : MonoBehaviour {
 
     public InputManager input = InputManager.Instance;
 
+    public Animator animator;
+
 	// Use this for initialization
 	void Start ()
     {
         gameObject.GetComponent<UnityEngine.MeshRenderer>().material = textures[Random.Range(0, textures.Count)];
         characterType = Random.Range(0, 7);
+
+        animator = gameObject.GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -22,9 +26,15 @@ public class Crowd : MonoBehaviour {
 		
 	}
 
+    void OnCollisionEnter(Collision collisionInfo)
+    {
+        Collided();
+    }
+
     void Collided()
     {
-        int result = input.CheckCharacter(characterType);
+        int result = 0;
+        //result = input.CheckCharacter(characterType);
         if (result > 0)
         {
             //trigger positive reaction
@@ -33,5 +43,6 @@ public class Crowd : MonoBehaviour {
         {
             //trigger negative reaction
         }
+        animator.SetTrigger("Collider");
     }
 }
