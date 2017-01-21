@@ -25,8 +25,30 @@ public class InputManager : MonoBehaviour {
 
 	List<string> usedWords = new List<string> ();
 
-	string[] goodCSV;
-	string[] badCSV;
+	//string[] goodCSV;
+	//string[] badCSV;
+
+	string[] goodCSV0;
+	string[] badCSV0;
+
+	string[] goodCSV1;
+	string[] badCSV1;
+
+	string[] goodCSV2;
+	string[] badCSV2;
+
+	string[] goodCSV3;
+	string[] badCSV3;
+
+	string[] goodCSV4;
+	string[] badCSV4;
+
+	string[] goodCSV5;
+	string[] badCSV5;
+
+	string[] goodCSV6;
+	string[] badCSV6;
+
 
 	bool[] characterLikes;
 	bool[] characterHates;
@@ -69,12 +91,48 @@ public class InputManager : MonoBehaviour {
 
 		string baseFilePath = Application.streamingAssetsPath;
 
-		for (int i = 0; i < pathGoodCSV.Length; i++) {
-			Debug.Log ("Parsing " + baseFilePath + "/" + pathGoodCSV [i]);
-			goodCSV = ParseCSV (baseFilePath + "/" + pathGoodCSV [i]);
-			Debug.Log ("Parsing " + baseFilePath + "/" + pathBadCSV [i]);
-			badCSV = ParseCSV (baseFilePath + "/" + pathBadCSV [i]);
-		}
+		Debug.Log ("Parsing " + baseFilePath + "/" + pathGoodCSV [0]);
+		goodCSV0 = ParseCSV (baseFilePath + "/" + pathGoodCSV [0]);
+		Debug.Log ("Parsing " + baseFilePath + "/" + pathBadCSV [0]);
+		badCSV0 = ParseCSV (baseFilePath + "/" + pathBadCSV [0]);
+
+		Debug.Log ("Parsing " + baseFilePath + "/" + pathGoodCSV [1]);
+		goodCSV1 = ParseCSV (baseFilePath + "/" + pathGoodCSV [1]);
+		Debug.Log ("Parsing " + baseFilePath + "/" + pathBadCSV [1]);
+		badCSV1 = ParseCSV (baseFilePath + "/" + pathBadCSV [1]);
+
+		Debug.Log ("Parsing " + baseFilePath + "/" + pathGoodCSV [2]);
+		goodCSV2 = ParseCSV (baseFilePath + "/" + pathGoodCSV [2]);
+		Debug.Log ("Parsing " + baseFilePath + "/" + pathBadCSV [2]);
+		badCSV2 = ParseCSV (baseFilePath + "/" + pathBadCSV [2]);
+
+		Debug.Log ("Parsing " + baseFilePath + "/" + pathGoodCSV [3]);
+		goodCSV3 = ParseCSV (baseFilePath + "/" + pathGoodCSV [3]);
+		Debug.Log ("Parsing " + baseFilePath + "/" + pathBadCSV [3]);
+		badCSV3 = ParseCSV (baseFilePath + "/" + pathBadCSV [3]);
+
+		Debug.Log ("Parsing " + baseFilePath + "/" + pathGoodCSV [4]);
+		goodCSV4 = ParseCSV (baseFilePath + "/" + pathGoodCSV [4]);
+		Debug.Log ("Parsing " + baseFilePath + "/" + pathBadCSV [4]);
+		badCSV4 = ParseCSV (baseFilePath + "/" + pathBadCSV [4]);
+
+		Debug.Log ("Parsing " + baseFilePath + "/" + pathGoodCSV [5]);
+		goodCSV5 = ParseCSV (baseFilePath + "/" + pathGoodCSV [5]);
+		Debug.Log ("Parsing " + baseFilePath + "/" + pathBadCSV [5]);
+		badCSV5 = ParseCSV (baseFilePath + "/" + pathBadCSV [5]);
+
+		Debug.Log ("Parsing " + baseFilePath + "/" + pathGoodCSV [6]);
+		goodCSV6 = ParseCSV (baseFilePath + "/" + pathGoodCSV [6]);
+		Debug.Log ("Parsing " + baseFilePath + "/" + pathBadCSV [6]);
+		badCSV6 = ParseCSV (baseFilePath + "/" + pathBadCSV [6]);
+
+
+//		for (int i = 0; i < pathGoodCSV.Length; i++) {
+//			Debug.Log ("Parsing " + baseFilePath + "/" + pathGoodCSV [i]);
+//			goodCSV = ParseCSV (baseFilePath + "/" + pathGoodCSV [i]);
+//			Debug.Log ("Parsing " + baseFilePath + "/" + pathBadCSV [i]);
+//			badCSV = ParseCSV (baseFilePath + "/" + pathBadCSV [i]);
+//		}
 
 		InvokeRepeating("FlashCarrot", 1f, .5f);
 
@@ -226,28 +284,60 @@ public class InputManager : MonoBehaviour {
 				characterLikes [p] = false;
 				characterHates [p] = false;
 			}
-
-
+				
 			Debug.Log ("Checking " + enteredWord);
 
-			for (int i = 0; i < pathGoodCSV.Length; i++) {
-
-				characterLikes [i] = (System.Array.IndexOf (goodCSV, enteredWord) != -1);
-				//
-				if (characterLikes[i]) {
-					likesSum++;
-					Debug.Log ("Character " + i + " Likes " + enteredWord);
-				}
-
-				characterHates [i] = (System.Array.IndexOf (badCSV, enteredWord) != -1);
-				//
-				if (characterHates[i]) {
-					likesSum--;
-					Debug.Log ("Character " + i + " Hates " + enteredWord);
-				}
+			characterLikes [0] = (System.Array.IndexOf (goodCSV0, enteredWord) != -1);
+			if (characterLikes[0]) {
+				likesSum++;
+				Debug.Log ("Character " + "0" + " Likes " + enteredWord);
 			}
 
-			usedWords.Add (enteredWord);
+			characterHates [0] = (System.Array.IndexOf (badCSV0, enteredWord) != -1);
+			if (characterHates[0]) {
+				likesSum--;
+				Debug.Log ("Character " + "0" + " Hates " + enteredWord);
+			}
+				 
+			characterLikes [1] = (System.Array.IndexOf (goodCSV1, enteredWord) != -1);
+			if (characterLikes[1]) {likesSum++;}
+
+			characterHates [1] = (System.Array.IndexOf (badCSV1, enteredWord) != -1);
+			if (characterHates[1]) {likesSum--;}
+
+			characterLikes [2] = (System.Array.IndexOf (goodCSV2, enteredWord) != -1);
+			if (characterLikes[2]) {likesSum++;}
+
+			characterHates [2] = (System.Array.IndexOf (badCSV2, enteredWord) != -1);
+			if (characterHates[2]) {likesSum--;}
+
+			characterLikes [3] = (System.Array.IndexOf (goodCSV3, enteredWord) != -1);
+			if (characterLikes[3]) {likesSum++;}
+
+			characterHates [3] = (System.Array.IndexOf (badCSV3, enteredWord) != -1);
+			if (characterHates[3]) {likesSum--;}
+
+			characterLikes [4] = (System.Array.IndexOf (goodCSV4, enteredWord) != -1);
+			if (characterLikes[4]) {likesSum++;}
+
+			characterHates [4] = (System.Array.IndexOf (badCSV4, enteredWord) != -1);
+			if (characterHates[4]) {likesSum--;}
+
+			characterLikes [5] = (System.Array.IndexOf (goodCSV5, enteredWord) != -1);
+			if (characterLikes[5]) {likesSum++;}
+
+			characterHates [5] = (System.Array.IndexOf (badCSV5, enteredWord) != -1);
+			if (characterHates[5]) {likesSum--;}
+
+			characterLikes [6] = (System.Array.IndexOf (goodCSV6, enteredWord) != -1);
+			if (characterLikes[6]) {likesSum++;}
+
+			characterHates [6] = (System.Array.IndexOf (badCSV6, enteredWord) != -1);
+			if (characterHates[6]) {likesSum--;}
+
+
+
+			//usedWords.Add (enteredWord);
 		}
 
 		if(likesSum > 0){
