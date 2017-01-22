@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Start Screen.unity
+    path: Assets/scenes/Start.unity
   - enabled: 1
-    path: Assets/Game Over Screen.unity
+    path: Assets/scenes/First.unity
   - enabled: 1
-    path: Assets/scenes/townHall.unity
+    path: Assets/scenes/Second.unity
   - enabled: 1
-    path: Assets/scenes/stadium.unity
+    path: Assets/scenes/Final.unity
   - enabled: 1
-    path: Assets/scenes/convention.unity
+    path: Assets/scenes/GameOver.unity
