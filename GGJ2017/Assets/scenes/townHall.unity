@@ -248,6 +248,11 @@ Prefab:
       propertyPath: charismaMax
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114164574568399256, guid: 174390b979709fc428f394b7918eb787,
+        type: 2}
+      propertyPath: m_FillAmount
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 174390b979709fc428f394b7918eb787, type: 2}
   m_IsPrefabParent: 0
@@ -991,7 +996,7 @@ MonoBehaviour:
   levelStartCountdown:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 396439417}
         m_MethodName: startBar
         m_Mode: 1
         m_Arguments:
