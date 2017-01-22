@@ -9,7 +9,7 @@ public class LevelStartCountdown : MonoBehaviour {
 
     public LevelStartTrigger levelStartCountdown;
 
-    private float time = 3f;
+    private float time = 5f;
     private bool countingDown;
     private UnityEngine.UI.Text textBox;
 
@@ -32,7 +32,7 @@ public class LevelStartCountdown : MonoBehaviour {
             }
             else
             {
-                textBox.text = "GO!";
+                textBox.text = "Type!";
                 countingDown = false;
                 levelStartCountdown.Invoke();
             }
@@ -40,7 +40,7 @@ public class LevelStartCountdown : MonoBehaviour {
         else
         {
             if (time < 0)
-                DestroyImmediate(gameObject);
+				DestroyImmediate(transform.parent.gameObject);
         }
 
         time -= Time.deltaTime;

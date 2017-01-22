@@ -6,14 +6,17 @@ public class Crowd : MonoBehaviour {
 
 	public int characterType;
 
-    public List<UnityEngine.Material> textures;
+    public List<UnityEngine.Texture> textures;
 
-    public Animator animator;
+    Animator animator;
+
+	public Renderer characterRenderer;
 
 	// Use this for initialization
 	void Start ()
     {
-        gameObject.GetComponent<UnityEngine.MeshRenderer>().material = textures[Random.Range(0, textures.Count)];
+		characterRenderer.material.mainTexture = textures[Random.Range(0, textures.Count)];
+        //gameObject.GetComponent<UnityEngine.MeshRenderer>().material = textures[Random.Range(0, textures.Count)];
         characterType = Random.Range(0, 7);
 
         animator = gameObject.GetComponent<Animator>();
