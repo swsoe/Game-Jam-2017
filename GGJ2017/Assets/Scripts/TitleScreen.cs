@@ -15,6 +15,7 @@ public class TitleScreen : MonoBehaviour {
 			isFirstTime = false;
 		}
 		SceneManager.LoadScene(level, LoadSceneMode.Single);
+
     }
 
 }

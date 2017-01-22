@@ -101,6 +101,7 @@ public class Charisma : MonoBehaviour {
 
     public void addPoints(int points)
     {
+		Debug.Log ("ADDING = " + points);
         charisma += points;
     }
 }

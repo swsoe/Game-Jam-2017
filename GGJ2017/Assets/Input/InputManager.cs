@@ -176,6 +176,8 @@ public class InputManager : MonoBehaviour {
 			textInput.text = word;
 		}
 
+
+
 	}
 
 	IEnumerator DeleteDelay(){

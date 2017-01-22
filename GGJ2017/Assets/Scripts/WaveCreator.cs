@@ -15,6 +15,7 @@ public class WaveCreator : MonoBehaviour {
 	}
 
 	public void Send(){
+		Debug.Log("SENDING SCORE");
 		InputManager.Instance.SendScore ();
 	}
 }

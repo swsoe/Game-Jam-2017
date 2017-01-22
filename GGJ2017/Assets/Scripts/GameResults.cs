@@ -24,34 +24,35 @@ public class GameResults : MonoBehaviour {
 	}
 		
 
-	public void TriggerGameWin(){
+	public void TriggerGameWin(int level){
 		src.clip = winAudio;
-		StartCoroutine("TriggerGameOverDelay", "GameOverScreen");
+		StartCoroutine("TriggerGameOverDelay", level);
 	}
 
-	public void TriggerGameMatch(){
+	public void TriggerGameMatch(int level){
 		src.clip = matchAudio;
-		StartCoroutine("TriggerGameOverDelay", "GameOverScreen");
+		StartCoroutine("TriggerGameOverDelay", level);
 	}
 
 	public void TriggerGameOver(){
 		src.clip = loseAudio;
-		StartCoroutine("TriggerGameOverDelay", "GameOverScreen");
+		StartCoroutine("TriggerGameOverDelay", 4);
 	}
 
 
-	IEnumerator TriggerGameOverDelay(string NextScene)
+	IEnumerator TriggerGameOverDelay(int NextScene)
     {
         //Play game over sound
-		if (!src.isPlaying) {
-			src.PlayOneShot (src.clip);
-		}
+		//if (!src.isPlaying) {
+		//	src.PlayOneShot (src.clip);
+		//}
 
         //Wait for sound to finish
-		yield return new WaitForSeconds(src.clip.length);
+		//yield return new WaitForSeconds(src.clip.length);
+		yield return new WaitForSeconds(2);
 
         //Transition to game over screen
-		SceneManager.LoadScene(NextScene);
+		SceneManager.LoadScene(NextScene, LoadSceneMode.Single);
     }
 
 
