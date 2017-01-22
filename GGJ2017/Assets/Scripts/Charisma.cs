@@ -42,6 +42,8 @@ public class Charisma : MonoBehaviour {
 	//
 	public Image fill;
 
+	public int crowdCount = 0;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -50,6 +52,7 @@ public class Charisma : MonoBehaviour {
 		if(PlayerPrefs.GetInt("win") == 1){
 			charisma = charismaMax / 2;
 		}
+			
     }
 	
 	// Update is called once per frame
@@ -101,7 +104,7 @@ public class Charisma : MonoBehaviour {
 
     public void addPoints(int points)
     {
-		Debug.Log ("ADDING = " + points);
-        charisma += points;
+		Debug.Log ("ADDING = " + (points / crowdCount));
+		charisma += ((points / crowdCount) * 20);
     }
 }

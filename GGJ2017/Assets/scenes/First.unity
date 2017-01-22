@@ -1004,6 +1004,16 @@ Prefab:
       propertyPath: winEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114628187626856626, guid: 174390b979709fc428f394b7918eb787,
+        type: 2}
+      propertyPath: crowdCount
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114164574568399256, guid: 174390b979709fc428f394b7918eb787,
+        type: 2}
+      propertyPath: m_FillAmount
+      value: 0.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 174390b979709fc428f394b7918eb787, type: 2}
   m_IsPrefabParent: 0
@@ -3620,6 +3630,26 @@ Prefab:
     - target: {fileID: 1647171456053284, guid: e04bd6a13233fb242b12e3ef23ae96e3, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720800683302506, guid: e04bd6a13233fb242b12e3ef23ae96e3, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.9032758
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720800683302506, guid: e04bd6a13233fb242b12e3ef23ae96e3, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.0705788
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720800683302506, guid: e04bd6a13233fb242b12e3ef23ae96e3, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1.0705788
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720800683302506, guid: e04bd6a13233fb242b12e3ef23ae96e3, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -7.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720800683302506, guid: e04bd6a13233fb242b12e3ef23ae96e3, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.23
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e04bd6a13233fb242b12e3ef23ae96e3, type: 2}
