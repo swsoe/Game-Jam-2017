@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Countdown\CountDown.cs" />
      <Compile Include="Assets\Input\InputManager.cs" />
+     <Compile Include="Assets\Person\Face.cs" />
      <Compile Include="Assets\Prefabs\Crowd\Crowd.cs" />
      <Compile Include="Assets\Scripts\Charisma.cs" />
      <Compile Include="Assets\Scripts\GameResults.cs" />
